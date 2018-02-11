@@ -11,8 +11,8 @@ Copyright 2018 kurzyx https://github.com/kurzyx
    limitations under the License.
 ]]
 
-// This lexer is heavily based on the JavaScript lexer
-// from jshint. https://github.com/jshint/jshint
+-- This lexer is heavily based on the JavaScript lexer
+-- from jshint. https://github.com/jshint/jshint
 
 local Lexer = {
     proto = {}
@@ -25,7 +25,7 @@ Lexer.create = function(...)
     return o
 end
 
-// Token types
+-- Token types
 Lexer.TokenType = {
     EndOfFile      = 0,
     EndOfLine      = 1,
@@ -39,7 +39,7 @@ Lexer.TokenType = {
     StringLiteral  = 9,
 }
 
-// (reserved) keywords
+-- (reserved) keywords
 Lexer.Keywords = {
     'abstract',
     'break',
@@ -209,12 +209,12 @@ Lexer.proto.scanComments = function(self)
     local startLineNr = self.lineNr
     local startCharNr = self.charNr
 
-    // Comments must start either with // or /*
+    -- Comments must start either with // or /*
     if char1 ~= '/' or (char2 ~= '/' and char2 ~= '*') then
         return null
     end
 
-    // One-line comment
+    -- One-line comment
     if char2 == '/' then
         local token = {
             type        = TokenType.Comment,
@@ -229,8 +229,7 @@ Lexer.proto.scanComments = function(self)
         return token
     end
 
-    //
-    // Multi-line comment
+    -- Multi-line comment
 
     local value = ""
     self:skip(2)
